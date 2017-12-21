@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> range;
+        if(nums.empty())
+        {
+            range.push_back(-1);
+            range.push_back(-1);
+            return range;
+        }
+        int front=0,back=nums.size()-1;
+        int flat=1;
+        while(flat)
+        {
+            while(nums[front]<target)
+                front++;
+            while(nums[back]>target)
+                back--;
+            if(front>back)
+            {
+                front=-1;
+                back=-1;
+                break;
+            }
+            else
+                flat=0;
+        }
+        range.push_back(front);
+        range.push_back(back);
+        return range;
+        
+        
+    }
+};
