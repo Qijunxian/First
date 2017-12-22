@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> result;
+        findPermute(nums,0, result);
+        return result;
+        
+    }
+    void findPermute(vector<int>& nums, int begin,vector<vector<int>>& result)
+    {
+        if(begin+1>nums.size())
+        {
+            result.push_back(nums);
+            return;
+        }
+        else
+            for(int i=begin;i<nums.size();i++)
+            {
+                swap(nums[begin],nums[i]);
+                findPermute(nums, begin+1, result);
+                swap(nums[begin],nums[i]);
+            }
+    }
+};
