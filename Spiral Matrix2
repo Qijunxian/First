@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> matrix(n, vector<int>(n));
+        int l=0, u=0, r=n-1, d=n-1;
+        int i=1;
+        while(i<=n*n)
+        {
+            for(int col=l;col<=r;col++)
+                matrix[u][col]=i++;
+            u++;
+            if(i>n*n)
+                break;
+            for(int row=u;row<=d;row++)
+                matrix[row][r]=i++;
+            r--;
+            if(i>n*n)
+                break;
+            for(int col=r;col>=l;col--)
+                matrix[d][col]=i++;
+            d--;
+            if(i>n*n)
+                break;
+            for(int row=d;row>=u;row--)
+                matrix[row][l]=i++;
+            l++;
+            if(i>n*n)
+                break;
+        }
+        return matrix;
+    }
+};
