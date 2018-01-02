@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int len=0, startIDX=0, left=0, right=0;
+        for(int i=0;i<s.size()-1;i++)
+        {
+            if(s[i]==s[i+1])
+            {
+                left=i;
+                right=i+1;
+                searchPalindrome(s, right, left, startIDX, len);
+            }
+            left=i;
+            right=i;
+            searchPalindrome(s, right, left, startIDX, len);
+            
+        }
+        if(len==0)
+                len=s.size();
+        return s.substr(startIDX, len);
+    }
+    
+    void searchPalindrome(string s, int right, int left, int &startIDX, int &len)
+    {
+        int step=1;
+        while((left-step)>=0&&(right+step)<s.size())
+        {
+            if(s[left-step]!=s[right+step])
+                break;
+            step++;
+        }
+        int wide=right-left+2*step-1;
+        if(wide>len)
+        {
+            len=wide;
+            startIDX=left-step+1;  //忘记将+1
+        }
+    }
+};
