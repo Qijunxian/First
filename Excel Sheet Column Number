@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int titleToNumber(string s) {
+        reverse(s.begin(), s.end());
+        int res=0;
+        for(int i=0;i<s.size();i++)
+        {
+            int tmp=(s[i]-'A'+1);
+            for(int j=0;j<i;j++)
+            {
+                tmp*=26;
+            }
+            res+=tmp;
+        }
+        return res;
+    }
+};
